@@ -34,6 +34,40 @@ function playRound (playerSelection, computerSelection) {
   }
 }
 
-const playerSelection = "rock";
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+
+
+function game() {
+  let playerScore = 0;
+  let computerScore = 0;
+  for (let i = 1; i <= 5; i++){
+    let playerSelection = window.prompt("choose between rock, paper or scissors");
+    let computerSelection = computerPlay()
+    let result = playRound(playerSelection, computerSelection);
+
+    if (result == "You Win! Rock beats Scissors" || result == "You Win! Paper beats Rock" || result == "You Win! Scissors beats Paper"){
+      playerScore++;
+      alert(`${result} Player wins 1 point: current score is player: ${playerScore} computer: ${computerScore}`);
+    }
+    if (result == "You Lose! Paper beats Rock" || result == "You Lose! Scissors beats Paper" || result == "You Lose! Rock beats Scissors"){
+      computerScore++;
+      alert(`${result} Computer wins 1 point: current score is player: ${playerScore} computer: ${computerScore}`);
+    } 
+    if (result == "Its a Draw") {
+      alert (` ${result} so no one gets points`);
+    }
+    alert(`${i} rounds played so ${5-i} rounds remaining`);
+  }
+
+  alert("here are the final results.")
+  if (computerScore > playerScore){
+    alert(`Computer wins ${computerScore} to ${playerScore}`);
+  }
+  else if (playerScore > computerScore) {
+    alert(`Player wins ${playerScore} to ${computerScore}`);
+  } else if (playerScore == computerScore) {
+    alert("Its a Draw! play again")
+  }
+}
+
+game();
+
